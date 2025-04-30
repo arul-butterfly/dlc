@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DLC Website - Empowering Digital Literacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Base Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
+      background: linear-gradient(135deg, #f8fbff, #d0e3ff);
+      color: #333;
+      transition: font-size 0.3s;
+    }
+
+    header {
+      background: linear-gradient(45deg, #ff6a00, #ff3f00);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      border-bottom: 5px solid #ff3f00;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    header p {
+      font-size: 1.2rem;
+    }
+
+    nav {
+      background: #222;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      flex-wrap: wrap;
+      transition: background 0.5s;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      position: relative;
+      padding: 10px 20px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+    nav a:hover {
+      background: #ff6a00;
+      border-radius: 8px;
+      transform: scale(1.05);
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background: #00c6ff;
+      transition: 0.3s;
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 2rem;
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .active {
+      display: block;
+    }
+
+    /* Tutorials */
+    .tutorials-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+    .card {
+      background: linear-gradient(135deg, #fff, #e4f3ff);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .card img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      color: #222;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .card button {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+    .card button:hover {
+      background: #ff6a00;
+    }
+
+    /* Chatbot */
+    #chatbot {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+    .chat-box {
+      height: 250px;
+      overflow-y: auto;
+      background: #f0f8ff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+    }
+    .chat-box .bot, .chat-box .user {
+      margin: 10px 0;
+    }
+    .chat-box .bot {
+      color: #0072ff;
+    }
+    .chat-box .user {
+      color: #ff6a00;
+    }
+
+    /* Accessibility */
+    .accessibility {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #ffffffdd;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+    .accessibility button, .accessibility select {
+      margin: 0.2rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .accessibility select {
+      background: linear-gradient(135deg, #ff6a00, #ff3f00);
+    }
+
+    /* Feedback */
+    form input, form textarea, form select, form button {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    form button {
+      background: #00c6ff;
+      color: white;
+      font-weight: bold;
+      border: none;
+      margin-top: 1rem;
+    }
+
+    footer {
+      background: #343a40;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Empowering Digital Literacy!</h1>
+  <p>Helping parents and seniors become tech-savvy 💡</p>
+</header>
+
+<nav>
+  <a href="#" onclick="showSection('home')">Home</a>
+  <a href="#" onclick="showSection('tutorials')">Tutorials</a>
+  <a href="#" onclick="showSection('chat')">AI Chat</a>
+  <a href="#" onclick="showSection('feedback')">Feedback</a>
+</nav>
+
+<div class="accessibility">
+  <button onclick="changeFontSize('increase')">A+</button>
+  <button onclick="changeFontSize('decrease')">A-</button>
+  <button onclick="speakText()">🔊 Speak</button>
+  <select onchange="changeLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+    <option value="ta">Tamil</option>
+  </select>
+</div>
+
+<!-- Home -->
+<section id="home" class="section active">
+  <h2>Welcome to the Digital Literacy Course</h2>
+  <p>Learn tools like WhatsApp, Paytm, YouTube, Google Maps, and more.</p>
+</section>
+
+<!-- Tutorials -->
+<section id="tutorials" class="section">
+  <h2>Video Tutorials</h2>
+  <div class="tutorials-container">
+    <div class="card"><img src="https://img.icons8.com/color/96/whatsapp--v1.png"/><h3>WhatsApp</h3><p>Messaging & calling made easy.</p><button>Watch Video</button></div>
+    <div class="card"><img src="https://img.icons8.com/color/96/google-maps.png"/><h3>Google Maps</h3><p>Find places and directions.</p><button>Watch Video</button></div>
+    <div class="card"><img src="https://img.icons8.com/color/96/paytm.png"/><h3>Paytm</h3><p>Pay bills and recharge safely.</p><button>Watch Video</button></div>
+    <div class="card"><img src="https://img.icons8.com/color/96/youtube-play.png"/><h3>YouTube</h3><p>Watch helpful videos.</p><button>Watch Video</button></div>
+    <div class="card"><img src="https://img.icons8.com/color/96/facebook.png"/><h3>Facebook</h3><p>Connect with loved ones.</p><button>Watch Video</button></div>
+    <div class="card"><img src="https://img.icons8.com/color/96/gmail.png"/><h3>Gmail</h3><p>Send and receive emails.</p><button>Watch Video</button></div>
+  </div>
+</section>
+
+<!-- AI Chat -->
+<section id="chat" class="section">
+  <h2>DigiBuddy 🤖</h2>
+  <div id="chatbot">
+    <div class="chat-box" id="chatBox">
+      <div class="bot">Hi! I'm DigiBuddy. Ask me anything about digital tools!</div>
+    </div>
+    <input type="text" id="chatInput" placeholder="Type your question..." onkeydown="if(event.key==='Enter') sendChat()">
+    <button onclick="sendChat()">Send</button>
+  </div>
+</section>
+
+<!-- Feedback -->
+<section id="feedback" class="section">
+  <h2>We'd love your Feedback!</h2>
+  <form>
+    <label>Your Name</label><input type="text" placeholder="Your Name">
+    <label>Your Experience</label><textarea placeholder="What did you think?"></textarea>
+    <label>Rate us</label>
+    <select><option>5 - Excellent</option><option>4 - Good</option><option>3 - Average</option><option>2 - Poor</option></select>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2025 Digital Literacy Course. Made with ❤️ by CollegeTips Champs.</p>
+</footer>
+
+<script>
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function changeFontSize(action) {
+    const current = window.getComputedStyle(document.body).fontSize;
+    const size = parseFloat(current);
+    document.body.style.fontSize = action === 'increase' ? `${size + 1}px` : `${size - 1}px`;
+  }
+
+  function speakText() {
+    const text = document.querySelector('.section.active').innerText;
+    const speech = new SpeechSynthesisUtterance(text);
+    window.speechSynthesis.speak(speech);
+  }
+
+  function changeLanguage(lang) {
+    alert('Language switching to: ' + lang + ' (This is a placeholder)');
+  }
+
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    const msg = input.value;
+    if (!msg) return;
+    const chatBox = document.getElementById('chatBox');
+    chatBox.innerHTML += `<div class='user'><strong>You:</strong> ${msg}</div>`;
+    chatBox.innerHTML += `<div class='bot'><strong>DigiBuddy:</strong> Thank you for your question! (Sample reply)</div>`;
+    chatBox.scrollTop = chatBox.scrollHeight;
+    input.value = '';
+  }
+</script>
+
+</body>
+</html>
